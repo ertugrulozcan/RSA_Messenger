@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RSA</string>
+    <string name="action_settings">Settings</string>
+    <string name="eposta">E-posta adresi</string>
+    <string name="mesaj">Mesaj</string>
+    <string name="gonder">Gönder</string>
+    <string name="title_activity_main">Giriş</string>
+    <string name="giris">Giriş</string>
+    <string name="title_activity_read">Mesaj oku</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="decrypto">Mesajı çöz</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_join">JoinActivity</string>
+    <string name="join">Kayıt</string>
+    <string name="phoneNumber">Telefon numarası</string>
+    <string name="ok">Tamam</string>
+    <string name="title_activity_send">SendActivity</string>
+    <string name="title_activity_email">EmailActivity</string>
+
+</resources>

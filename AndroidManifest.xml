@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aero.rsamessenger"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.aero.rsamessenger.MenuActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.StartActivity"
+            android:label="@string/title_activity_start" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.LoginActivity"
+            android:label="@string/join"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.JoinActivity"
+            android:label="@string/join" >
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.SendActivity"
+            android:label="@string/title_activity_send" >
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.ReadActivity"
+            android:label="@string/title_activity_read" >
+        </activity>
+        <activity
+            android:name="com.aero.rsamessenger.EmailActivity"
+            android:label="@string/title_activity_email" >
+        </activity>
+    </application>
+
+</manifest>
