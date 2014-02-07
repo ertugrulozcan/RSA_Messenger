@@ -11,12 +11,13 @@ import com.aero.rsa.RsaKey.PublicKey;
  * 
  * Mikail Simsek mikail.simsek@bil.omu.edu.tr
  * 
- * Sifreleyici sinifi.
  */
 
 public class Encoder
 {
 	private PublicKey publicKey;
+	
+	public static String binaryCode;
 	
 	//
 	// Kurucu metod - Constructor
@@ -33,28 +34,45 @@ public class Encoder
 		return crypto;
 	}
 	
+	//
+	// String sifreleme islemi
+	//
 	public String Encrypt(String message)
 	{
-		BigInteger messageBinInt = MessageToBigInteger(message);
-		
-		// Sifreleme islemi
-		return  Encrypt(messageBinInt).toString();
-	}
-	
-	private BigInteger MessageToBigInteger(String message)
-	{
-		StringBuilder stringBuilder = new StringBuilder();
-		int letter;
-		
-		for (int i = 0; i < message.length(); i++)
+		// ADIM 1:
+		// String'in tum karakterlerinin ascii degerleri birlestirilerek mesaji ifade eden yeni bir sayi olusturulur.
+		// Tum karakterler icin ascii karsiligi 3 basamakli olacak sekilde ayarlanmalidir.
+		// Bu nedenle 100'den kucuk olanlarin basina '0' eklenerek yazilir.
+		StringBuilder intMessage = new StringBuilder();
+		for(int i = 0; i < message.length(); i++)
 		{
-			letter = message.codePointAt(i);
-			if (letter < 100)
-				stringBuilder.append("0" + letter);
+			int letter = message.codePointAt(i);
+			if(letter >= 100)
+				intMessage.append(letter);
 			else
-				stringBuilder.append(letter);
+				intMessage.append("0" + letter);
 		}
 		
-		return new BigInteger(stringBuilder.toString());
+		System.out.println(message + " >>> " + intMessage);
+		
+		// ADIM 2:
+		// Elde edilen sayisal mesaj encrypt metodu ile sifrelenir.
+		BigInteger crypto = Encrypt(new BigInteger(intMessage.toString()));
+		
+		return crypto.toString();
+	}
+	
+	private int BinaryToDecimal(String bin)
+	{
+		bin = new StringBuilder(bin).reverse().toString();
+		
+		int dec = 0;
+		for(int i = 0; i < bin.length(); i++)
+		{
+			if(bin.charAt(i) == '1')
+				dec += Math.pow(2, i);
+		}
+		
+		return dec;
 	}
 }

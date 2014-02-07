@@ -100,10 +100,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int error_incorrect_password=0x7f06001c;
         public static final int error_invalid_email=0x7f06001a;
         public static final int error_invalid_password=0x7f06001b;
-        public static final int giris=0x7f060006;
         public static final int gonder=0x7f060004;
         public static final int hello_world=0x7f06000b;
         public static final int join=0x7f06000e;
+        public static final int login=0x7f060006;
         public static final int login_progress_signing_in=0x7f060019;
         public static final int mesaj=0x7f060003;
         public static final int ok=0x7f060010;

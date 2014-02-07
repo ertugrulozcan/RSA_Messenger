@@ -7,7 +7,7 @@
     <string name="mesaj">Mesaj</string>
     <string name="gonder">Gönder</string>
     <string name="title_activity_main">Giriş</string>
-    <string name="giris">Giriş</string>
+    <string name="login">Giriş</string>
     <string name="title_activity_read">Mesaj oku</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

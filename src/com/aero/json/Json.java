@@ -14,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.aero.rsa.RsaKey.PublicKey;
+import com.aero.rsa.RsaKey.*;
 import com.aero.rsamessenger.User;
 
 public abstract class Json
@@ -36,6 +36,12 @@ public abstract class Json
 				object.put("email", userList.get(i).emailAdress);
 				object.put("publicKeyN", userList.get(i).publicKey.N().toString());
 				object.put("publicKeyE", userList.get(i).publicKey.E().toString());
+				
+				if(userList.get(i).privateKey != null)
+				{
+					object.put("privateKeyN", userList.get(i).privateKey.N().toString());
+					object.put("privateKeyD", userList.get(i).privateKey.D().toString());
+				}
 				
 				array.put(object);
 			}
@@ -65,13 +71,18 @@ public abstract class Json
 			JSONArray jArray = json.getJSONArray("Users");
 			for(int i = 0; i < jArray.length(); i++)
 			{
-				String phoneNumber, email, publicKeyN, publicKeyE;
+				String phoneNumber, email, publicKeyN, publicKeyE, privateKeyN, privateKeyD;
 				phoneNumber = jArray.getJSONObject(i).getString("phoneNumber");
 				email = jArray.getJSONObject(i).getString("email");
 				publicKeyN = jArray.getJSONObject(i).getString("publicKeyN");
 				publicKeyE = jArray.getJSONObject(i).getString("publicKeyE");
+				privateKeyN = jArray.getJSONObject(i).getString("privateKeyN");
+				privateKeyD = jArray.getJSONObject(i).getString("privateKeyD");
 				
-				userList.add(new User(phoneNumber, email, new PublicKey(new BigInteger(publicKeyN), new BigInteger(publicKeyE))));
+				if(privateKeyN == null || privateKeyN == "" || privateKeyD == null || privateKeyD == "")
+					userList.add(new User(phoneNumber, email, new PublicKey(new BigInteger(publicKeyN), new BigInteger(publicKeyE))));
+				else
+					userList.add(new User(phoneNumber, email, new PublicKey(new BigInteger(publicKeyN), new BigInteger(publicKeyE)), new PrivateKey(new BigInteger(privateKeyN), new BigInteger(privateKeyD))));
 			}
 		}
 		catch (JSONException e)

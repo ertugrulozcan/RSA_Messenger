@@ -42,11 +42,15 @@ public class RSA
 	 */
 	private int keySize = 1024;
 	
+	private long progressTime;
+	
 	//
 	// Kurucu metod - Constructor (Argumansiz versiyon)
 	//
 	public RSA()
 	{
+		long start = System.nanoTime();
+		
 		// p ve q asallainin uretilmesi
 		this.GeneratePrimes();
 		
@@ -58,6 +62,38 @@ public class RSA
 		
 		// Ozel anahtar uretimi
 		this.GeneratePrivateKey();
+		
+		long finish = System.nanoTime();
+		
+		this.progressTime = finish - start;
+		
+		this.PrintInfo();
+	}
+	
+	public RSA(int keySize)
+	{
+		long start = System.nanoTime();
+		
+		// Yeni anahtar degerinin ayarlanmasi
+		this.SetKeySize(keySize);
+		
+		// p ve q asallainin uretilmesi
+		this.GeneratePrimes();
+		
+		// Totient hesabi
+		this.t = Totient();
+		
+		// Ortak anahtar uretimi
+		this.GeneratePublicKey();
+		
+		// Ozel anahtar uretimi
+		this.GeneratePrivateKey();
+
+		long finish = System.nanoTime();
+		
+		this.progressTime = finish - start;
+		
+		this.PrintInfo();
 	}
 	
 	public PublicKey getPublicKey()
@@ -130,7 +166,27 @@ public class RSA
 	//
 	public void SetKeySize(int newSize)
 	{
-		if (newSize > 384 && newSize < 16384)
-			this.keySize = newSize;
+		this.keySize = newSize;
+	}
+	
+	public int GetKeySize()
+	{
+		return this.keySize;
+	}
+	
+	public long ProgressTime()
+	{
+		return this.progressTime;
+	}
+	
+	public void PrintInfo()
+	{
+		System.out.println("RSA Demonstration :");
+		System.out.println("p = " + this.p);
+		System.out.println("q = " + this.q);
+		System.out.println("n = " + this.publicKey.N());
+		System.out.println("t = " + this.t);
+		System.out.println("e = " + this.publicKey.E());
+		System.out.println("d = " + this.privateKey.D());
 	}
 }
